@@ -12,10 +12,11 @@
 % \documentclass[openright]{iiufrgs}
 % para gerar uma verso somente-frente, basta utilizar a opo `oneside':
 % \documentclass[oneside]{iiufrgs}
-\usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
-\usepackage[latin1]{inputenc}   % pacote para acentuao
+% \usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
+%\usepackage[latin1]{inputenc}   % pacote para acentuao
 \usepackage{graphicx}           % pacote para importar figuras
-\usepackage{times}              % pacote para usar fonte Adobe Times
+\usepackage[utf8]{inputenc}
+% \usepackage{times}              % pacote para usar fonte Adobe Times
 %\usepackage{mathptmx}          % p/ usar fonte Adobe Times nas frmulas
 
 %
@@ -35,6 +36,7 @@
 % a data deve ser a da defesa; se nao especificada, so gerados
 % mes e ano correntes
 %\date{maio}{2001}
+\ano{2001}
 
 % o nome do curso pode ser redefinido (ex. para TCs)
 %\course{Curso de Especializao em Cachaa}
@@ -152,7 +154,7 @@ Agradeo ao \LaTeX\ por no ter vrus de macro\ldots
 
 % resumo na lngua do documento
 \begin{abstract}
-Este documento  um exemplo de como formatar documentos para o
+Este documento é um exemplo de como formatar documentos para o
 Instituto de Informtica da UFRGS usando as classes \LaTeX\
 disponibilizadas pelo UTUG\@. Ao mesmo tempo, pode servir de consulta
 para comandos mais genricos. \emph{O texto do resumo no deve
@@ -172,7 +174,7 @@ the abstract should not contain more than 500~words.}
 % aqui comeca o texto propriamente dito
 
 % introducao
-\chapter{Introduo}
+\chapter{Introdução}
 No incio dos tempos, Donald E. Knuth criou o \TeX. Algum tempo depois, Leslie Lamport criou o \LaTeX. Graas a eles, no somos obrigados a usar o Word nem o StarOffice.
 
 \section{Figuras e tabelas}

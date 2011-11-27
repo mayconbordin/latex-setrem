@@ -66,6 +66,17 @@
 \RequirePackage{indentfirst}
 \RequirePackage{template/setremdefs}
 \RequirePackage{natbib}
+\RequirePackage{setspace}
+
+
+% Fonte
+\RequirePackage[T1]{fontenc}
+\RequirePackage{uarial}
+\renewcommand{\familydefault}{\sfdefault}
+\RequirePackage{blindtext}
+
+\parindent 1.5cm
+\parskip   18pt
 
 %==============================================================================
 % Margens do texto
@@ -190,6 +201,7 @@
 }
 \date{\monthname}{\number\year}
 
+\newcommand{\ano}[1]{\gdef\@ano{#1}}
 %==============================================================================
 % Definição padrão da folha de rosto.
 % Os dados específicos do tipo de trabalho (dissertação, tese, etc.) são
@@ -203,7 +215,7 @@
         \gdef\@city{#1}
         \gdef\@state{#2}
 }
-\location{Porto~Alegre}{RS}
+\location{Três~de~Maio}{RS}
 \renewcommand{\maketitle}{%
         \begin{titlepage}
                 \thetitlepage
@@ -227,7 +239,8 @@
                 }
                 \vfill
         }
-        \centerline{\@city, \ii@date}
+        \centerline{\@city}
+        \centerline{\@ano}
 }
 \def\@topbox{%
         \parbox[t]{\textwidth}{%
@@ -397,9 +410,10 @@
 \renewenvironment{abstract}{%
         \chapter*{\abstractname}
 }{%
-        \par\vfill
-        \noindent\textbf{\keywordsname:} \@abstractkw.
+        \par
+        \textbf{\keywordsname:}\@abstractkw.
 }
+
 \newenvironment{englishabstract}[2]{%
         \if@openright\cleardoublepage\else\clearpage\fi%
         \gdef\@englishkeywords{#2}%
