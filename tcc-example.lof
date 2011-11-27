@@ -1,0 +1,13 @@
+\select@language {brazilian}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\select@language {brazilian}
+\addvspace {10\p@ }
+\select@language {brazilian}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.1:}{\ignorespaces Exemplo de figura importada de um arquivo \texttt {.eps} e tambm exemplo de caption muito grande que ocupa mais de uma linha na Lista de~Figuras}}{10}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.2:}{\ignorespaces Exemplo de figura desenhada com o environment \texttt {picture}.}}{11}
+\addvspace {10\p@ }
