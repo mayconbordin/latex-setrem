@@ -203,9 +203,6 @@
 % informados definindo-se o comando \titlepagespecificinfo. Veja os
 % arquivos .def incluídos com a classe.
 %==============================================================================
-\newlength{\titlepagewinwidth}\setlength{\titlepagewinwidth}{95mm}
-\newlength{\titlepagewinheight}\setlength{\titlepagewinheight}{64mm}
-\newlength{\titlepagewinvoffset}\setlength{\titlepagewinvoffset}{112mm}
 \newcommand{\location}[2]{
         \gdef\@city{#1}
         \gdef\@state{#2}
@@ -390,7 +387,7 @@
 % Os comandos \@makechapterhead e \@makeschapterhead fazem a
 % formatação dos títulos propriamente ditos.
 %==============================================================================
-\newcommand{\ii@chapterfont}{\@setfontsize\Large{16}{20}}
+\newcommand{\ii@chapterfont}{\@setfontsize\normalsize{12pt}{20}}
 \def\@chapapp{}
 \def\@chapter[#1]#2{%
         \refstepcounter{chapter}%
@@ -401,7 +398,7 @@
         \@makechapterhead{#2}\@afterheading
 }
 \def\@makechapterhead#1{%
-        \vspace*{90pt}
+        \vspace*{4.5cm}
         \reset@font\noindent{\ii@chapterfont\sffamily\textbf{\@chapapp\thechapter\hspace{1em}\MakeUppercase{#1}}\par}
         \addvspace{42pt}
 }
@@ -433,6 +430,7 @@
 % Formatação das seções
 %==============================================================================
 \setcounter{secnumdepth}{4}
+
 \renewcommand{\section}{%
         \@startsection{section}{1}{0pt}{18pt}{9pt}{\reset@font\large\bfseries}
 }
