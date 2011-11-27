@@ -69,64 +69,56 @@
 \RequirePackage{setspace}
 
 
+%==============================================================================
 % Fonte
+%==============================================================================
 \RequirePackage[T1]{fontenc}
 \RequirePackage{uarial}
 \renewcommand{\familydefault}{\sfdefault}
 \RequirePackage{blindtext}
 
+%==============================================================================
+% Parágrafo
+%==============================================================================
+% Identação
 \parindent 1.5cm
-\parskip   18pt
+
+% Espaço entre parágrafos
+\parskip 18pt
 
 %==============================================================================
 % Margens do texto
 %==============================================================================
-\newlength{\ii@topmargin}\setlength{\ii@topmargin}{3cm}
-\newlength{\ii@leftmargin}\setlength{\ii@leftmargin}{3cm}
-\newlength{\ii@rightmargin}\setlength{\ii@rightmargin}{2cm}
-\newlength{\ii@bottommargin}\setlength{\ii@bottommargin}{2cm}
-
-\newlength{\ii@pagenummargin}\setlength{\ii@pagenummargin}{20mm}
-%\newlength{\ii@bottommargin}\setlength{\ii@bottommargin}{20mm}
-%\newlength{\ii@sidemargin}\setlength{\ii@sidemargin}{30mm}
-%\setlength{\marginparwidth}{10mm}
-
-% ajuste das medidas verticais
-\setlength{\topmargin}{\ii@pagenummargin}
-        \addtolength{\topmargin}{-1em} % isto é +- a altura do núm. da página
+% Margem superior de 3cm
+\setlength{\topmargin}{3cm}
         \addtolength{\topmargin}{-1in}
-\setlength{\headheight}{1em}
-\setlength{\headsep}{\ii@topmargin}
-        \addtolength{\headsep}{-\ii@pagenummargin}
         
-% altura do texto
+% Todo o resto com 0cm
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\footskip}{0cm}
+
+% Altura da página, removendo 5cm (3cm superior, 2cm inferior)
 \setlength{\textheight}{\paperheight}
-        \addtolength{\textheight}{-\ii@topmargin}
-        \addtolength{\textheight}{-\ii@bottommargin}
-\setlength{\footskip}{\ii@bottommargin}
+        \addtolength{\textheight}{-5cm}
 
-% ajuste das medidas horizontais
-\setlength{\oddsidemargin}{\ii@leftmargin}
-        \addtolength{\oddsidemargin}{-1in}
-\setlength{\evensidemargin}{\ii@rightmargin}
+% Margem esquerda de 3cm para páginas pares e ímpares
+\setlength{\oddsidemargin}{-1in}
+        \addtolength{\oddsidemargin}{3cm}
+\setlength{\evensidemargin}{\oddsidemargin}
 
-% largura do texto
+% Largura da página, removendo 5cm (3cm da esquerda, 2cm da direita)
 \setlength{\textwidth}{\paperwidth}
-        \addtolength{\textwidth}{-\ii@leftmargin}
-        \addtolength{\textwidth}{-\ii@rightmargin}
-        
-%\setlength{\marginparsep}{\ii@leftmargin}
-%        \addtolength{\marginparsep}{-\marginparwidth}
-%        \setlength{\marginparsep}{.5\marginparsep}
+        \addtolength{\textwidth}{-5cm}
 
 %==============================================================================
 % Numeração das páginas
 %==============================================================================
-\def\ps@iiufrgs{
+\def\ps@setrem{
         \let\@oddfoot\@empty
         \let\@evenfoot\@empty
-        \def\@evenhead{{\small\thepage}}
-        \def\@oddhead{\hspace*{\fill}{\small\thepage}}
+        \def\@evenhead{\hspace*{\fill}{\thepage}}
+        \def\@oddhead{\hspace*{\fill}{\thepage}}
 }
 \pagestyle{empty}
 \let\ps@plain\ps@empty
@@ -225,45 +217,46 @@
         \@ifundefined{@cipspecificinfo}{}{\@makecippage}
 }
 \newcommand{\thetitlepage}{%
-        \noindent\@topbox\\
+        \noindent\\
+        \centering
+        \silogo[0.7]
+        
+        \vspace{1cm}
+        
+        \textbf{\MakeUppercase{\@authora}}\\
+        \@ifundefined{@authorb}{}{\MakeUppercase{\textbf{\@authorb}}\\}%
+        \@ifundefined{@authorc}{}{\MakeUppercase{\textbf{\@authorc}}\\}%
+        \@ifundefined{@authord}{}{\MakeUppercase{\textbf{\@authord}}\\}%
+        \vspace*{\fill}
+        {\large\textbf{\@title}\par}
         \vfill
-        \@ifundefined{titlepagespecificinfo}{}{
-                \hspace*{\fill}\makebox[.5\textwidth][l]{%
-                        \parbox[b]{8.5cm}{\raggedright\titlepagespecificinfo}%
-                }
-                \vfill
-        }
-        \@ifundefined{@advisor}{}{
-                \hspace*{\fill}\parbox[b]{.5\textwidth}{%
-                        {\titlepageadvisorinfo}
-                }
-                \vfill
-        }
-        \centerline{\@city}
-        \centerline{\@ano}
+        
+        \centerline{\textbf{\@city}}
+        \centerline{\textbf{\@ano}}
 }
 \def\@topbox{%
         \parbox[t]{\textwidth}{%
                 \centering%
                 \vbox to \titlepagewinvoffset{%
-                        \titlepagetopinfo\vfill\@winbox
+                        \titlepagetopinfo
+                        \vfill
+                        \@winbox
                 }
         }
 }
 \def\@winbox{%
-%       \fbox{
-        \parbox[b]{\titlepagewinwidth}{%
-        \centering\vbox to \titlepagewinheight{%
-                \vspace*{\fill}
-                \MakeUppercase{\@authora}\\
-                \@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
-                \@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
-                \@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
-                \vspace{\stretch{4}}
-                {\large\textbf{\@title}\par}
-                \vfill
-        }}%
-%       }%
+    \parbox[b]{\titlepagewinwidth}{%
+		  \centering\vbox to \titlepagewinheight{%
+		          \vspace*{\fill}
+		          \textbf{\MakeUppercase{\@authora}}\\
+		          \@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
+		          \@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
+		          \@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
+		          \vspace{\stretch{4}}
+		          {\large\textbf{\@title}\par}
+		          \vfill
+		  }
+    }
 }
 \newcommand{\course}[1]{\gdef\@course{#1}}
 \course{\ppgc}
@@ -277,8 +270,8 @@
         %\MakeUppercase{\@course}\\
 }
 \newcommand{\titlepageadvisorinfo}{%
-        \@ifundefined{@advisor}{}{\vfill\@advisor\\\advisorname}
-        \@ifundefined{@coadvisor}{}{\\[6ex]\@coadvisor\\\coadvisorname}
+        %\@ifundefined{@advisor}{}{\vfill\@advisor\\\advisorname}
+        %\@ifundefined{@coadvisor}{}{\\[6ex]\@coadvisor\\\coadvisorname}
 }
 
 %==============================================================================
@@ -450,7 +443,7 @@
         \addcontentsline{toc}{chapter}{\protect\numberline{\@chapapp\thechapter}#1}%
         \addtocontents{lof}{\protect\addvspace{10\p@}}%
         \addtocontents{lot}{\protect\addvspace{10\p@}}%
-        \pagestyle{iiufrgs}\let\ps@plain\ps@iiufrgs%
+        \pagestyle{setrem}\let\ps@plain\ps@setrem%
         \@makechapterhead{#2}\@afterheading
 }
 \def\@makechapterhead#1{%
