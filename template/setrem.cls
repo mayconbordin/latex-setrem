@@ -86,6 +86,9 @@
 % Espaço entre parágrafos
 \parskip 18pt
 
+% Espaço entre linhas
+\setstretch{1.5}
+
 %==============================================================================
 % Margens do texto
 %==============================================================================
@@ -216,120 +219,71 @@
         \setcounter{page}{2}%
         \@ifundefined{@cipspecificinfo}{}{\@makecippage}
 }
+
+%==============================================================================
+% Dados do trabalho
+%==============================================================================
+\newcommand{\curso}[1]{\gdef\@curso{#1}}
+\newcommand{\tipodoc}[1]{\gdef\@tipodoc{#1}}
+
+%==============================================================================
+% Capa do trabalho
+%==============================================================================
 \newcommand{\thetitlepage}{%
-        \noindent\\
+        \noindent
         \centering
+        
+        % Logo de sistemas
         \silogo[0.7]
         
+        % Espaço entre logo e autores
         \vspace{1cm}
         
+        % Autor(es) do trabalho
         \textbf{\MakeUppercase{\@authora}}\\
         \@ifundefined{@authorb}{}{\MakeUppercase{\textbf{\@authorb}}\\}%
         \@ifundefined{@authorc}{}{\MakeUppercase{\textbf{\@authorc}}\\}%
         \@ifundefined{@authord}{}{\MakeUppercase{\textbf{\@authord}}\\}%
         \vspace*{\fill}
+        
+        % Título do trabalho
         {\large\textbf{\@title}\par}
         \vfill
         
+        % Cidade e ano
         \centerline{\textbf{\@city}}
         \centerline{\textbf{\@ano}}
 }
-\def\@topbox{%
-        \parbox[t]{\textwidth}{%
-                \centering%
-                \vbox to \titlepagewinvoffset{%
-                        \titlepagetopinfo
-                        \vfill
-                        \@winbox
-                }
-        }
-}
-\def\@winbox{%
-    \parbox[b]{\titlepagewinwidth}{%
-		  \centering\vbox to \titlepagewinheight{%
-		          \vspace*{\fill}
-		          \textbf{\MakeUppercase{\@authora}}\\
-		          \@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
-		          \@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
-		          \@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
-		          \vspace{\stretch{4}}
-		          {\large\textbf{\@title}\par}
-		          \vfill
-		  }
-    }
-}
-\newcommand{\course}[1]{\gdef\@course{#1}}
-\course{\ppgc}
-
-% Capa?
-\newcommand{\titlepagetopinfo}{%
-				\silogo[0.7]
-        %\MakeUppercase{\silogo[0.7]}\\
-        %\MakeUppercase{\ii}\\
-        %\@ifundefined{@dept}{}{\MakeUppercase{\csname dept\@dept\endcsname}\\}%
-        %\MakeUppercase{\@course}\\
-}
-\newcommand{\titlepageadvisorinfo}{%
-        %\@ifundefined{@advisor}{}{\vfill\@advisor\\\advisorname}
-        %\@ifundefined{@coadvisor}{}{\\[6ex]\@coadvisor\\\coadvisorname}
-}
 
 %==============================================================================
-% Catalogação na fonte (CIP) e nominata
+% Folha de Rosto
 %==============================================================================
 \newcommand{\@makecippage}{%
-        \clearpage%
-        \begin{center}
-                \textbf{\cipcaption}\\[2ex]
-                \iiu@cipwindow
-        \end{center}
-        \vfill
-        \nominata
-}
-% definição do quadro
-\def\iiu@cipwindow{%
-        \framebox[120mm]{%
-        \begin{minipage}{110mm}%
-                \vspace*{0.2ex}
-                \setlength{\parindent}{1.5em}%
-                \setlength{\parskip}{1.3ex}%
-                \noindent\@authoralast, \@authorafirst\par
-                \@title\ / \@authora.\ -- \@city: PPGC da~UFRGS, \@publyear.\par
-                \pageref{LastPage}~f.: il.\par
-                \@cipspecificinfo\ -- \ufrgs. \@course, \@city, BR--\@state, \@publyear. \advisorname: \@advisorfirst\ \@advisorlast\@ifundefined{@coadvisor}{}{; \coadvisorname: \@coadvisorfirst\ \@coadvisorlast}.\par
-                \@cipkw I.~\@advisorlast, \@advisorfirst. \@ifundefined{@coadvisorfirst}{II.~T\'{\i}tulo.}{II.~\@coadvisorlast, \@coadvisorfirst. III.~T\'{\i}tulo.}\\
-                \vspace{0.2ex}
-        \end{minipage}%
-        }%
-}
-\newcommand{\nominataReit}{Prof.~Jos{\'e} Carlos Ferraz Hennemann}
-\newcommand{\nominataReitname}{Reitor}
-\newcommand{\nominataPRCA}{Prof.~Pedro Cezar Dutra Fonseca}
-\newcommand{\nominataPRCAname}{Pr{\'o}-Reitor de Coordena{\c{c}}{\~a}o Acad{\^e}mica}
-% os dois proximos comandos nao sao mais usados
-\newcommand{\nominataPRE}{Prof.~Jos{\'e} Carlos Ferraz Hennemann}
-\newcommand{\nominataPREname}{Pr{\'o}-Reitor de Ensino}
-\newcommand{\nominataPRAPG}{Prof\textsuperscript{a}.~Valqu{\'\i}ria Linck Bassani}
-\newcommand{\nominataPRAPGname}{Pr{\'o}-Reitora de P{\'o}s-Gradua{\c{c}}{\~a}o}
-\newcommand{\nominataDir}{Prof.~Philippe Olivier Alexandre Navaux}
-\newcommand{\nominataDirname}{Diretor do Instituto de Inform{\'a}tica}
-\newcommand{\nominataCoord}{Prof.~Carlos Alberto Heuser}
-\newcommand{\nominataCoordname}{Coordenador do PPGC}
-\newcommand{\nominataBibchefe}{Beatriz Regina Bastos Haro}
-\newcommand{\nominataBibchefename}{Bibliotec{\'a}ria-chefe do
-  Instituto de Inform{\'a}tica}
-\newcommand{\nominataChefeINA}{Prof.~Jos{\'e} Valdeni de Lima}
-\newcommand{\nominataChefeINAname}{Chefe do \deptINA}
-\newcommand{\nominataChefeINT}{Prof.~Leila Ribeiro}
-\newcommand{\nominataChefeINTname}{Chefe do \deptINT}
-\newcommand{\nominata}{
-        \MakeUppercase{\ufrgs}\\
-        \nominataReitname: \nominataReit\\
-        \nominataPRCAname: \nominataPRCA\\
-        \nominataPRAPGname: \nominataPRAPG\\
-        \nominataDirname: \nominataDir\\
-        \nominataCoordname: \nominataCoord\\
-        \nominataBibchefename: \nominataBibchefe
+        \noindent
+        \centering
+        
+        \MakeUppercase{\@authora}\\
+        \@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
+        \@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
+        \@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
+        \vspace*{\fill}
+        
+        \MakeUppercase{\@title}\\
+        \vspace*{\fill}
+        
+        \@tipodoc\\
+        \setrem\\
+        \faculsetrem\\
+        Curso de \@curso
+        \vspace*{\fill}
+        
+        \@ifundefined{@advisor}{}{\advisorname:\\\@advisor\\}
+ 				\@ifundefined{@coadvisor}{}{\coadvisorname:\\\@coadvisor\\}
+        \vspace*{\fill}
+        
+        % Cidade e ano
+			  \@city\\
+			  \@ano
 }
 
 %==============================================================================
