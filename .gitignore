@@ -5,3 +5,10 @@
 *.ps
 *.pdf
 *.toc
+*.bbl
+*.blg
+*.bit
+*.idx
+*.glo
+*.ilg
+*.ind
