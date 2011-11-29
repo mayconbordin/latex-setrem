@@ -209,6 +209,9 @@
 }
 
 \newcommand{\course}[1]{\gdef\@course{#1}}
+\newcommand{\courseheader}[1]{\gdef\@courseheader{#1}}
+\courseheader{\nulllogo[0.7]}
+
 \newcommand{\docname}[1]{\gdef\@docname{#1}}
 %==============================================================================
 % Definição padrão da folha de rosto.
@@ -231,8 +234,8 @@
 \newcommand{\thetitlepage}{%
     \noindent
     \begin{center}
-				% Logo de sistemas
-				\silogo[0.7]
+				% Logo do curso/instituição
+				\@courseheader
 				
 				% Espaço entre logo e autores
 				\vspace{1cm}
@@ -272,7 +275,7 @@
 				\@docname\\
 				\setrem\\
 				\faculsetrem\\
-				Curso de \@course
+				\@course
 				\vspace*{\fill}
 				
 				\@ifundefined{@advisor}{}{\advisorname:\\\@advisor\\}
@@ -288,30 +291,15 @@
 %==============================================================================
 % Ajuste do sumário (nada indentado) 
 %==============================================================================
+% só é usado no apêndice, precisa ser revisado e removido se for o caso
 \newlength{\ii@chapnumindent}\setlength{\ii@chapnumindent}{1.8em}
 
-%\renewcommand*{\l@chapter}[2]{
-%    \addpenalty{-\@highpenalty}
-%    \vskip -1ex \@plus\p@
-%    \setlength\@tempdima{1.5em}
-%    \begingroup
-%				\setstretch{1}
-%				\parskip 0pt
-%				
-%				\parindent \z@ \rightskip \@pnumwidth
-%				\parfillskip -\@pnumwidth
-%				\leavevmode\bfseries\sffamily
-%				\advance\leftskip\@tempdima
-%				\hskip -\leftskip
-%				\@dottedtocline{0}{0em}{\ii@chapnumindent}{\uppercase{#1}}{#2}
-%				\penalty\@highpenalty
-%    \endgroup
-%}
+\newlength{\s@tocspace}\setlength{\s@tocspace}{1pt}
 
 \renewcommand*{\l@chapter}[2]{
 		\begingroup
 				\setstretch{1}
-				\parskip 6pt
+				\parskip \s@tocspace
 				\@dottedtocline{1}{0em}{2.8em}{\uppercase{\textbf{#1}}}{\hss #2}
 		\endgroup
 }
@@ -319,7 +307,7 @@
 \renewcommand*{\l@section}[2]{
 		\begingroup
 				\setstretch{1}
-				\parskip 0pt
+				\parskip \s@tocspace
 				\@dottedtocline{1}{0em}{2.8em}{\uppercase{#1}}{\hss #2}
 		\endgroup
 }
@@ -327,7 +315,7 @@
 \renewcommand*{\l@subsection}[2]{
 		\begingroup
 				\setstretch{1}
-				\parskip 0pt
+				\parskip \s@tocspace
 				\@dottedtocline{1}{0em}{2.8em}{\textbf{#1}}{\hss #2}
 		\endgroup
 }

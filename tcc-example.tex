@@ -1,5 +1,5 @@
 %
-% exemplo genrico de uso da classe iiufrgs.cls
+% exemplo genérico de uso da classe setrem.cls
 % $Id: iiufrgs.tex,v 4.6 2003/11/21 22:36:13 avila Exp $
 %
 \documentclass[diss]{template/setrem}
@@ -16,67 +16,19 @@
 \advisor[Prof.~Dr.]{Lamport}{Leslie}
 \coadvisor[Prof.~Dr.]{Knuth}{Donald Ervin}
 
-% a data deve ser a da defesa; se nao especificada, so gerados
-% mes e ano correntes
+% O local de realização/publicação do trabalho
 \location{Três~de~Maio}{RS}
+
+% A data de desenvolvimento/apresentação do trabalho
 \date{maio}{2001}
-\course{Bacharelado em Sistemas de Informação}
+
+% O nome do curso - aqui está sendo usado o nome definido em setremdefs.sty
+\course{\cbsi}
+
+% a imagem de cabeçalho que será exibida na capa do trabalho
+% por padrão insere espaço vazio no lugar do logo
+\courseheader{\silogo[0.7]}
 \docname{Relatório do Estágio Final de Curso}
-
-% o nome do curso pode ser redefinido (ex. para TCs)
-%\course{Curso de Especializao em Cachaa}
-
-% o local de realizao do trabalho pode ser especificado (ex. para TCs)
-% com o comando \location:
-%\location{Itaquaquecetuba}{SP}
-
-% itens individuais da nominata podem ser redefinidos com os comandos
-% abaixo:
-% \renewcommand{\nominataReit}{Prof\textsuperscript{a}.~Wrana Maria Panizzi}
-% \renewcommand{\nominataReitname}{Reitora}
-% \renewcommand{\nominataPRE}{Prof.~Jos{\'e} Carlos Ferraz Hennemann}
-% \renewcommand{\nominataPREname}{Pr{\'o}-Reitor de Ensino}
-% \renewcommand{\nominataPRAPG}{Prof\textsuperscript{a}.~Joc{\'e}lia Grazia}
-% \renewcommand{\nominataPRAPGname}{Pr{\'o}-Reitora Adjunta de P{\'o}s-Gradua{\c{c}}{\~a}o}
-% \renewcommand{\nominataDir}{Prof.~Philippe Olivier Alexandre Navaux}
-% \renewcommand{\nominataDirname}{Diretor do Instituto de Inform{\'a}tica}
-% \renewcommand{\nominataCoord}{Prof.~Carlos Alberto Heuser}
-% \renewcommand{\nominataCoordname}{Coordenador do PPGC}
-% \renewcommand{\nominataBibchefe}{Beatriz Regina Bastos Haro}
-% \renewcommand{\nominataBibchefename}{Bibliotec{\'a}ria-chefe do Instituto de Inform{\'a}tica}
-% \renewcommand{\nominataChefeINA}{Prof.~Jos{\'e} Valdeni de Lima}
-% \renewcommand{\nominataChefeINAname}{Chefe do \deptINA}
-% \renewcommand{\nominataChefeINT}{Prof.~Leila Ribeiro}
-% \renewcommand{\nominataChefeINTname}{Chefe do \deptINT}
-
-% A seguir so apresentados comandos especficos para alguns
-% tipos de documentos.
-
-% Relatrio de Pesquisa [rp]:
-% \rp{123}             % numero do rp
-% \financ{CNPq, CAPES} % orgaos financiadores
-
-% Trabalho Individual [ti]:
-% \ti{123}     % numero do TI
-% \ti[II]{456} % no caso de ser o segundo TI
-
-% Trabalho de Concluso [tc]:
-% alm de definir explicitamente o nome do curso (\course) e o local
-% de realizao (\location),  necessrio redefinir a nominata,
-% pois as informaes necessrias dependem do curso. Ex.:
-%\renewcommand{\nominata}{
-%        UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL\\
-%        Reitora: Prof\textsuperscript{a}.~Wrana Maria Panizzi\\
-%        Pr-Reitor de Ensino: Prof.~Jos Carlos Ferraz Hennemann\\
-%        Diretor do Instituto de Informtica: Prof.~Philippe Olivier Alexandre Navaux\\
-%        Coordenador do curso: Prof.~Seu Creysson\\
-%        Bibliotecria-chefe do Instituto de Informtica: Beatriz Regina Bastos Haro
-%}
-
-% Monografias de Especializao [espec]:
-% \espec{Redes e Sistemas Distribudos}      % nome do curso
-% \coord[Profa.~Dra.]{Weber}{Taisy da Silva} % coordenador do curso
-% \dept{INA}                                 % departamento relacionado
 
 %
 % palavras-chave
@@ -212,6 +164,7 @@ que produz somente o ano (ex.~``[\ldots] so apresentados por Baker e
 Smith~\citeyearpar{Baker:PP-96}.'') e o
 \texttt{\char'134citep*}, que produz a citao com a lista
 completa de autores (ex.~``[\ldots] na linguagem Panda~\citep*{Assenmacher:Panda-ECOOP93}.'')
+
 
 % e aqui vai a parte principal
 %
