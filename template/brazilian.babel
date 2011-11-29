@@ -6,6 +6,7 @@
 	\def\abstractname{Resumo}%
 	\def\appendixname{Ap{\^e}ndice}%
 	\def\contentsname{Sum{\'a}rio}%
+	\def\chaptername{Cap\'{\i}tulo }%
 	\def\listfigurename{Lista de Figuras}%
 	\def\listtablename{Lista de Tabelas}%
 	\def\listdefname{Lista de Defini\c{c}\~{o}es}%

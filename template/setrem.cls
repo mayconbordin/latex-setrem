@@ -34,7 +34,10 @@
 %==============================================================================
 % Declaração de opções
 %==============================================================================
-\newcommand{\iiu@novodoc}[1]{\DeclareOption{#1}{\AtEndOfClass{\input{template/#1.def}}}}
+\newcommand{\iiu@novodoc}[1]{%
+		\DeclareOption{#1}{\AtEndOfClass{\input{template/#1.def}}}
+}%
+
 \iiu@novodoc{rp}
 \iiu@novodoc{prop-tese}
 \iiu@novodoc{plano-doutorado}
@@ -56,11 +59,11 @@
 %==============================================================================
 \LoadClass[12pt,a4paper,twoside]{report}
 \RequirePackage[english,brazilian]{babel}
-\input{brazilian.babel}
-\input{english.babel}
+\input{template/brazilian.babel}
+\input{template/english.babel}
 \if@english
-        \selectlanguage{english}
-        \AtBeginDocument{\selectlanguage{english}}
+    \selectlanguage{english}
+    \AtBeginDocument{\selectlanguage{english}}
 \fi
 \RequirePackage{lastpage}
 \RequirePackage{indentfirst}
@@ -192,7 +195,7 @@
 
 
 %==============================================================================
-% Redefinição da data (para ter mês e ano separados)
+% Dados do trabalhos
 %==============================================================================
 \renewcommand{\date}[2]{
         \gdef\@publmonth{#1}
@@ -200,18 +203,19 @@
 }
 \date{\monthname}{\number\year}
 
-\newcommand{\ano}[1]{\gdef\@ano{#1}}
+\newcommand{\location}[2]{
+        \gdef\@city{#1}
+        \gdef\@state{#2}
+}
+
+\newcommand{\course}[1]{\gdef\@course{#1}}
+\newcommand{\docname}[1]{\gdef\@docname{#1}}
 %==============================================================================
 % Definição padrão da folha de rosto.
 % Os dados específicos do tipo de trabalho (dissertação, tese, etc.) são
 % informados definindo-se o comando \titlepagespecificinfo. Veja os
 % arquivos .def incluídos com a classe.
 %==============================================================================
-\newcommand{\location}[2]{
-        \gdef\@city{#1}
-        \gdef\@state{#2}
-}
-\location{Três~de~Maio}{RS}
 \renewcommand{\maketitle}{%
         \begin{titlepage}
                 \thetitlepage
@@ -220,12 +224,6 @@
         \setcounter{page}{2}%
         \@ifundefined{@cipspecificinfo}{}{\@makecippage}
 }
-
-%==============================================================================
-% Dados do trabalho
-%==============================================================================
-\newcommand{\curso}[1]{\gdef\@curso{#1}}
-\newcommand{\tipodoc}[1]{\gdef\@tipodoc{#1}}
 
 %==============================================================================
 % Capa do trabalho
@@ -252,7 +250,7 @@
 				
 				% Cidade e ano
 				\centerline{\textbf{\@city}}
-				\centerline{\textbf{\@ano}}
+				\centerline{\textbf{\@publyear}}
     \end{center}
 }
 
@@ -271,10 +269,10 @@
 				\MakeUppercase{\@title}\\
 				\vspace*{\fill}
 				
-				\@tipodoc\\
+				\@docname\\
 				\setrem\\
 				\faculsetrem\\
-				Curso de \@curso
+				Curso de \@course
 				\vspace*{\fill}
 				
 				\@ifundefined{@advisor}{}{\advisorname:\\\@advisor\\}
@@ -283,7 +281,7 @@
 				
 				% Cidade e ano
 				\@city\\
-				\@ano
+				\@publyear
 	  \end{center}
 }
 
@@ -416,10 +414,13 @@
 % formatação dos títulos propriamente ditos.
 %==============================================================================
 \newcommand{\ii@chapterfont}{\@setfontsize\normalsize{12pt}{20}}
-\def\@chapapp{}
+
+%\renewcommand{\chaptername}{CAPÍTULO }
+
+\def\@chapapp{\chaptername}
 \def\@chapter[#1]#2{%
         \refstepcounter{chapter}%
-        \addcontentsline{toc}{chapter}{\protect\numberline{\@chapapp\thechapter}#1}%
+        \addcontentsline{toc}{chapter}{\@chapapp\thechapter: #1}%
         \addtocontents{lof}{\protect\addvspace{10\p@}}%
         \addtocontents{lot}{\protect\addvspace{10\p@}}%
         \pagestyle{setrem}\let\ps@plain\ps@setrem%
@@ -430,7 +431,7 @@
         \vspace*{4.5cm}
         \reset@font\noindent{
         		\ii@chapterfont\sffamily\textbf{
-        				CAPÍTULO \@chapapp\thechapter:\hspace{1em}\MakeUppercase{#1}
+        				\MakeUppercase{\@chapapp}\thechapter:\hspace{1em}\MakeUppercase{#1}
         		}\par
         }
         %\addvspace{42pt}
@@ -486,23 +487,17 @@
 \def\@beforespace{4pt}
 \def\@afterspace{4pt}
 
-%
-% Título 2 - uppercase
-%
+% Título 2
 \renewcommand{\section}{
 		\@startsection{section}{1}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\uppercase}
 }
 
-%
-% Título 3 - lowercase e negrito
-%
+% Título 3
 \renewcommand{\subsection}{%
     \@startsection{subsection}{2}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\bfseries}
 }
 
-%
-% Título 4 - lowercase e itálico
-%
+% Título 4
 \renewcommand{\subsubsection}{%
     \@startsection{subsubsection}{3}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\itshape}
 }
