@@ -67,7 +67,8 @@
 \RequirePackage{template/setremdefs}
 \RequirePackage{natbib}
 \RequirePackage{setspace}
-
+\RequirePackage{titlesec}
+\RequirePackage{ragged2e}
 
 %==============================================================================
 % Fonte
@@ -78,8 +79,11 @@
 \RequirePackage{blindtext}
 
 %==============================================================================
-% Parágrafo
+% Texto
 %==============================================================================
+% Texto justificado
+\justifying
+
 % Identação
 \parindent 1.5cm
 
@@ -227,88 +231,112 @@
 % Capa do trabalho
 %==============================================================================
 \newcommand{\thetitlepage}{%
-        \noindent
-        \centering
-        
-        % Logo de sistemas
-        \silogo[0.7]
-        
-        % Espaço entre logo e autores
-        \vspace{1cm}
-        
-        % Autor(es) do trabalho
-        \textbf{\MakeUppercase{\@authora}}\\
-        \@ifundefined{@authorb}{}{\MakeUppercase{\textbf{\@authorb}}\\}%
-        \@ifundefined{@authorc}{}{\MakeUppercase{\textbf{\@authorc}}\\}%
-        \@ifundefined{@authord}{}{\MakeUppercase{\textbf{\@authord}}\\}%
-        \vspace*{\fill}
-        
-        % Título do trabalho
-        {\large\textbf{\@title}\par}
-        \vfill
-        
-        % Cidade e ano
-        \centerline{\textbf{\@city}}
-        \centerline{\textbf{\@ano}}
+    \noindent
+    \begin{center}
+				% Logo de sistemas
+				\silogo[0.7]
+				
+				% Espaço entre logo e autores
+				\vspace{1cm}
+				
+				% Autor(es) do trabalho
+				\textbf{\MakeUppercase{\@authora}}\\
+				\@ifundefined{@authorb}{}{\MakeUppercase{\textbf{\@authorb}}\\}%
+				\@ifundefined{@authorc}{}{\MakeUppercase{\textbf{\@authorc}}\\}%
+				\@ifundefined{@authord}{}{\MakeUppercase{\textbf{\@authord}}\\}%
+				\vspace*{\fill}
+				
+				% Título do trabalho
+				{\large\textbf{\@title}\par}
+				\vfill
+				
+				% Cidade e ano
+				\centerline{\textbf{\@city}}
+				\centerline{\textbf{\@ano}}
+    \end{center}
 }
 
 %==============================================================================
 % Folha de Rosto
 %==============================================================================
 \newcommand{\@makecippage}{%
-        \noindent
-        \centering
-        
-        \MakeUppercase{\@authora}\\
-        \@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
-        \@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
-        \@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
-        \vspace*{\fill}
-        
-        \MakeUppercase{\@title}\\
-        \vspace*{\fill}
-        
-        \@tipodoc\\
-        \setrem\\
-        \faculsetrem\\
-        Curso de \@curso
-        \vspace*{\fill}
-        
-        \@ifundefined{@advisor}{}{\advisorname:\\\@advisor\\}
- 				\@ifundefined{@coadvisor}{}{\coadvisorname:\\\@coadvisor\\}
-        \vspace*{\fill}
-        
-        % Cidade e ano
-			  \@city\\
-			  \@ano
+    \noindent
+    \begin{center}
+				\MakeUppercase{\@authora}\\
+				\@ifundefined{@authorb}{}{\MakeUppercase{\@authorb}\\}%
+				\@ifundefined{@authorc}{}{\MakeUppercase{\@authorc}\\}%
+				\@ifundefined{@authord}{}{\MakeUppercase{\@authord}\\}%
+				\vspace*{\fill}
+				
+				\MakeUppercase{\@title}\\
+				\vspace*{\fill}
+				
+				\@tipodoc\\
+				\setrem\\
+				\faculsetrem\\
+				Curso de \@curso
+				\vspace*{\fill}
+				
+				\@ifundefined{@advisor}{}{\advisorname:\\\@advisor\\}
+				\@ifundefined{@coadvisor}{}{\coadvisorname:\\\@coadvisor\\}
+				\vspace*{\fill}
+				
+				% Cidade e ano
+				\@city\\
+				\@ano
+	  \end{center}
 }
 
 %==============================================================================
 % Ajuste do sumário (nada indentado) 
 %==============================================================================
 \newlength{\ii@chapnumindent}\setlength{\ii@chapnumindent}{1.8em}
+
+%\renewcommand*{\l@chapter}[2]{
+%    \addpenalty{-\@highpenalty}
+%    \vskip -1ex \@plus\p@
+%    \setlength\@tempdima{1.5em}
+%    \begingroup
+%				\setstretch{1}
+%				\parskip 0pt
+%				
+%				\parindent \z@ \rightskip \@pnumwidth
+%				\parfillskip -\@pnumwidth
+%				\leavevmode\bfseries\sffamily
+%				\advance\leftskip\@tempdima
+%				\hskip -\leftskip
+%				\@dottedtocline{0}{0em}{\ii@chapnumindent}{\uppercase{#1}}{#2}
+%				\penalty\@highpenalty
+%    \endgroup
+%}
+
 \renewcommand*{\l@chapter}[2]{
-        \addpenalty{-\@highpenalty}
-        \vskip -1ex \@plus\p@
-        \setlength\@tempdima{1.5em}
-        \begingroup
-        \parindent \z@ \rightskip \@pnumwidth
-        \parfillskip -\@pnumwidth
-        \leavevmode\bfseries\sffamily
-        \advance\leftskip\@tempdima
-        \hskip -\leftskip
-%      esta é a definicao original da classe report:
-%      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-        \@dottedtocline{0}{0em}{\ii@chapnumindent}{\uppercase{#1}}{#2}
-%        \@dottedtocline{0}{0em}{\ii@chapnumindent}{\MakeUppercase{#1}}{#2}
-        \penalty\@highpenalty
-        \endgroup
+		\begingroup
+				\setstretch{1}
+				\parskip 6pt
+				\@dottedtocline{1}{0em}{2.8em}{\uppercase{\textbf{#1}}}{\hss #2}
+		\endgroup
 }
-\renewcommand*{\l@section}[2]
-              {\@dottedtocline{1}{0em}{2.8em}{\textbf{#1}}{\hss #2}}
-\renewcommand*{\l@subsection}{\@dottedtocline{2}{0em}{3.7em}}
+
+\renewcommand*{\l@section}[2]{
+		\begingroup
+				\setstretch{1}
+				\parskip 0pt
+				\@dottedtocline{1}{0em}{2.8em}{\uppercase{#1}}{\hss #2}
+		\endgroup
+}
+
+\renewcommand*{\l@subsection}[2]{
+		\begingroup
+				\setstretch{1}
+				\parskip 0pt
+				\@dottedtocline{1}{0em}{2.8em}{\textbf{#1}}{\hss #2}
+		\endgroup
+}
+
 \newif\if@aftertoc
 \@aftertocfalse
+
 \renewcommand{\tableofcontents}{%
         \chapter*{\contentsname}
         \@starttoc{toc}\@aftertoctrue%
@@ -395,13 +423,19 @@
         \addtocontents{lof}{\protect\addvspace{10\p@}}%
         \addtocontents{lot}{\protect\addvspace{10\p@}}%
         \pagestyle{setrem}\let\ps@plain\ps@setrem%
-        \@makechapterhead{#2}\@afterheading
+        \@makechapterhead{#2}
+        \@afterheading
 }
 \def\@makechapterhead#1{%
         \vspace*{4.5cm}
-        \reset@font\noindent{\ii@chapterfont\sffamily\textbf{\@chapapp\thechapter\hspace{1em}\MakeUppercase{#1}}\par}
-        \addvspace{42pt}
+        \reset@font\noindent{
+        		\ii@chapterfont\sffamily\textbf{
+        				CAPÍTULO \@chapapp\thechapter:\hspace{1em}\MakeUppercase{#1}
+        		}\par
+        }
+        %\addvspace{42pt}
 }
+
 \def\@schapter#1{%
         \if@aftertoc\addcontentsline{toc}{chapter}{#1}\fi%
         \addtocontents{lof}{\protect\addvspace{10\p@}}%
@@ -428,23 +462,57 @@
 
 %==============================================================================
 % Formatação das seções
+%
+% \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE} 
+%            optional * [ALTHEADING]{HEADING}
+%    Generic command to start a section.  
+%    NAME       : e.g., 'subsection'
+%    LEVEL      : a number, denoting depth of section -- e.g., chapter=1,
+%                 section = 2, etc.  A section number will be printed if
+%                 and only if LEVEL < or = the value of the secnumdepth
+%                 counter.
+%    INDENT     : Indentation of heading from left margin
+%    BEFORESKIP : Absolute value = skip to leave above the heading.  
+%                 If negative, then paragraph indent of text following 
+%                 heading is suppressed.
+%    AFTERSKIP  : if positive, then skip to leave below heading,
+%                       else - skip to leave to right of run-in heading.
+%    STYLE      : commands to set style
+%  If '*' missing, then increments the counter.  If it is present, then
+%  there should be no [ALTHEADING] argument.  A sectioning command
+%  is normally defined to \@startsection + its first six arguments.
 %==============================================================================
 \setcounter{secnumdepth}{4}
+\def\@beforespace{4pt}
+\def\@afterspace{4pt}
 
-\renewcommand{\section}{%
-        \@startsection{section}{1}{0pt}{18pt}{9pt}{\reset@font\large\bfseries}
+%
+% Título 2 - uppercase
+%
+\renewcommand{\section}{
+		\@startsection{section}{1}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\uppercase}
 }
+
+%
+% Título 3 - lowercase e negrito
+%
 \renewcommand{\subsection}{%
-        \@startsection{subsection}{2}{0pt}{12pt}{6pt}{\reset@font\bfseries}
+    \@startsection{subsection}{2}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\bfseries}
 }
+
+%
+% Título 4 - lowercase e itálico
+%
 \renewcommand{\subsubsection}{%
-        \@startsection{subsubsection}{3}{0pt}{12pt}{6pt}{\reset@font\itshape}
+    \@startsection{subsubsection}{3}{0pt}{\@beforespace}{\@afterspace}{\raggedright\reset@font\itshape}
 }
+
+
 \renewcommand{\paragraph}{%
-        \@startsection{paragraph}{4}{0pt}{12pt}{6pt}{\reset@font}
+    \@startsection{paragraph}{4}{0pt}{12pt}{6pt}{\reset@font}
 }
 \renewcommand{\subparagraph}{%
-        \@startsection{subparagraph}{5}{0pt}{1ex}{-1em}{\reset@font\bfseries}
+    \@startsection{subparagraph}{5}{0pt}{1ex}{-1em}{\reset@font\bfseries}
 }
 
 %==============================================================================
